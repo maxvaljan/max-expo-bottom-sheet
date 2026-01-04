@@ -1,10 +1,21 @@
 import React from 'react';
 import { Dialog } from '@base-ui/react/dialog';
+import type {
+  DialogRootChangeEventDetails,
+  DialogRootProps,
+} from '@base-ui/react/dialog';
 
 export interface BottomSheetProps {
   children: React.ReactNode;
   isOpened: boolean;
-  onIsOpenedChange: (isOpened: boolean) => void;
+  onIsOpenedChange: (
+    isOpened: boolean,
+    eventDetails: DialogRootChangeEventDetails
+  ) => void;
+  dialogProps?: Omit<
+    DialogRootProps,
+    'children' | 'open' | 'defaultOpen' | 'onOpenChange'
+  >;
   backdropStyle?: React.CSSProperties;
   viewportStyle?: React.CSSProperties;
   popupStyle?: React.CSSProperties;
@@ -65,9 +76,10 @@ export function BottomSheet({
   viewportClassName,
   popupClassName,
   contentClassName,
+  dialogProps,
 }: BottomSheetProps) {
   return (
-    <Dialog.Root open={isOpened} onOpenChange={onIsOpenedChange}>
+    <Dialog.Root {...dialogProps} open={isOpened} onOpenChange={onIsOpenedChange}>
       <Dialog.Portal>
         <Dialog.Backdrop
           className={backdropClassName}

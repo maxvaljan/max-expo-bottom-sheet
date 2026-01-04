@@ -6,7 +6,7 @@ Cross-platform BottomSheet for Expo using native Expo UI on iOS/Android and Base
 - Android: `@expo/ui/jetpack-compose` BottomSheet (Compose)
 - Web: `@base-ui/react` Dialog
 
-> Expo UI is still beta and **not available in Expo Go**. Use a development build to test on device/simulator.
+> Expo UI is beta and **not available in Expo Go**. Use a development build to test on device/simulator.
 
 ## Installation
 
@@ -107,7 +107,17 @@ export function Example({ isOpened, setIsOpened }) {
 
 - **iOS:** Props match `@expo/ui/swift-ui` `BottomSheet` with one addition:
   - `hostStyle?: StyleProp<ViewStyle>` — applied to the `Host` wrapper
+  - `hostProps?: Omit<HostProps, 'children' | 'style'>` — passthrough props for `Host` (for advanced SwiftUI layout control)
 - **Android:** Props match `@expo/ui/jetpack-compose` `BottomSheet`
+
+Advanced iOS props supported via passthrough:
+- `presentationDetents`
+- `presentationDragIndicator`
+- `presentationBackgroundInteraction`
+- `interactiveDismissDisabled`
+
+Advanced Android props supported via passthrough:
+- `skipPartiallyExpanded`
 
 ### Web
 
@@ -115,7 +125,14 @@ export function Example({ isOpened, setIsOpened }) {
 interface BottomSheetProps {
   children: React.ReactNode;
   isOpened: boolean;
-  onIsOpenedChange: (isOpened: boolean) => void;
+  onIsOpenedChange: (
+    isOpened: boolean,
+    eventDetails: DialogRootChangeEventDetails
+  ) => void;
+  dialogProps?: Omit<
+    DialogRootProps,
+    'children' | 'open' | 'defaultOpen' | 'onOpenChange'
+  >;
   backdropStyle?: React.CSSProperties;
   viewportStyle?: React.CSSProperties;
   popupStyle?: React.CSSProperties;
@@ -131,6 +148,7 @@ interface BottomSheetProps {
 
 - iOS SwiftUI components must be wrapped in `Host`. This component does that for you.
 - Base UI Dialog is unstyled by default; this package provides a simple default sheet layout you can override via style/className props.
+- For accessibility on web, include `Dialog.Title` and `Dialog.Description` in your content when appropriate (from `@base-ui/react/dialog`).
 
 ## License
 

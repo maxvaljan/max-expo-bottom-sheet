@@ -10,12 +10,17 @@ type SwiftBottomSheetProps = React.ComponentProps<
   typeof import('@expo/ui/swift-ui').BottomSheet
 >;
 
+type SwiftHostProps = React.ComponentProps<
+  typeof import('@expo/ui/swift-ui').Host
+>;
+
 type JetpackBottomSheetProps = React.ComponentProps<
   typeof import('@expo/ui/jetpack-compose').BottomSheet
 >;
 
 type IosBottomSheetProps = SwiftBottomSheetProps & {
   hostStyle?: StyleProp<ViewStyle>;
+  hostProps?: Omit<SwiftHostProps, 'children' | 'style'>;
 };
 
 export type BottomSheetProps = IosBottomSheetProps | JetpackBottomSheetProps;
@@ -31,10 +36,10 @@ export function BottomSheet(props: BottomSheetProps) {
 
   if (Platform.OS === 'ios') {
     const { BottomSheet: SwiftBottomSheet, Host } = getSwiftUI();
-    const { hostStyle, ...rest } = props as IosBottomSheetProps;
+    const { hostProps, hostStyle, ...rest } = props as IosBottomSheetProps;
 
     return (
-      <Host style={[{ position: 'absolute', width }, hostStyle]}>
+      <Host {...hostProps} style={[{ position: 'absolute', width }, hostStyle]}>
         <SwiftBottomSheet {...rest} />
       </Host>
     );
