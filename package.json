@@ -1,6 +1,6 @@
 {
   "name": "max-expo-bottom-sheet",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "description": "Cross-platform BottomSheet for Expo using Expo UI (SwiftUI + Jetpack Compose) and Base UI Dialog for web",
   "main": "src/index.ts",
   "react-native": "src/index.ts",
@@ -55,7 +55,10 @@
     }
   },
   "devDependencies": {
+    "@base-ui/react": "^1.0.0",
     "@changesets/cli": "^2.27.1",
+    "@expo/ui": "0.2.0-beta.9",
+    "@types/react": "^19.1.0",
     "typescript": "^5.9.3"
   }
 }
