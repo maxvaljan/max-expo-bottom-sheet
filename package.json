@@ -1,0 +1,61 @@
+{
+  "name": "max-expo-bottom-sheet",
+  "version": "0.1.0",
+  "description": "Cross-platform BottomSheet for Expo using Expo UI (SwiftUI + Jetpack Compose) and Base UI Dialog for web",
+  "main": "src/index.ts",
+  "react-native": "src/index.ts",
+  "types": "src/index.ts",
+  "sideEffects": false,
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "changeset": "changeset",
+    "version": "changeset version",
+    "release": "changeset publish",
+    "prepublishOnly": "npm run typecheck"
+  },
+  "files": [
+    "src",
+    "README.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "expo",
+    "react-native",
+    "bottom-sheet",
+    "swiftui",
+    "jetpack-compose",
+    "base-ui",
+    "ios",
+    "android",
+    "web"
+  ],
+  "author": "Max Valjan",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maxvaljan/max-expo-bottom-sheet.git"
+  },
+  "bugs": {
+    "url": "https://github.com/maxvaljan/max-expo-bottom-sheet/issues"
+  },
+  "homepage": "https://github.com/maxvaljan/max-expo-bottom-sheet#readme",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "peerDependencies": {
+    "@base-ui/react": "*",
+    "@expo/ui": "*",
+    "expo": "*",
+    "react": "*",
+    "react-native": "*"
+  },
+  "peerDependenciesMeta": {
+    "@base-ui/react": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.27.1",
+    "typescript": "^5.9.3"
+  }
+}
